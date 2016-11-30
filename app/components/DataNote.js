@@ -30,7 +30,8 @@ export default class DataNote extends Component {
         alignSelf: 'stretch',
         borderColor: 'grey'}}>
         <Text style={{
-          paddingTop: 15
+          paddingTop: 15,
+          fontWeight: "bold"
         }}>
           {note.title}
         </Text>

@@ -7,7 +7,7 @@ import {
   Text,
   TextInput,
   View,
-  Button,
+  ScrollView,
   Navigator,
   TouchableHighlight,//kalau di android TouchableNativeFeedback
   TouchableOpacity
@@ -53,57 +53,85 @@ export default class AddNotePage extends Component {
 
   renderScene(route, navigator) {
     return(
-      <View style={{flex: 1, alignItems: 'center', backgroundColor: '#f5f5dc', justifyContent: 'center'}}>
-        <Text style={{
-          marginBottom: 30,
-          textAlign: 'center'
-        }}>
-          Add New Note
-          {this.state.title}
-        </Text>
+      <ScrollView style={{
+        paddingTop: 80,
+        backgroundColor: '#f5f5dc'
+      }}>
+        <View style={{flex: 1, alignItems: 'center', backgroundColor: '#f5f5dc', justifyContent: 'center'}}>
+          <Text style={{
+            marginBottom: 30,
+            textAlign: 'center'
+          }}>
+            Add New Note
+          </Text>
 
-        <TextInput
-          style={{
-            height: 40,
-            width: 300,
-            backgroundColor: 'cornsilk',
-            borderColor: 'olive',
-            borderWidth: 1,
+          <TextInput
+            style={{
+              height: 40,
+              width: 300,
+              backgroundColor: 'cornsilk',
+              borderColor: 'olive',
+              borderWidth: 1,
+              alignSelf: 'center',
+              paddingLeft: 120
+            }}
+            placeholder="Add Title"
+            onChangeText={this.onChangeTitle}
+          />
+
+          <TextInput
+            style={{
+              height: 100,
+              width: 300,
+              backgroundColor: 'cornsilk',
+              borderColor: 'olive',
+              borderWidth: 1,
+              paddingTop: 10,
+              paddingLeft: 0,
+              marginTop: 20,
+              marginBottom: 20,
+              alignSelf: 'center',
+              paddingLeft: 70
+            }}
+            placeholder="Add Note's Content"
+            onChangeText={this.onChangeContent}
+          />
+          <View style={{
+            flex: 1,
+            flexDirection: 'row',
             alignSelf: 'center'
-          }}
-          placeholder="Add Title"
-          onChangeText={this.onChangeTitle}
-        />
+          }}>
+            <BtnCustom
+            onPress={this.onAddPress}
+            style={{
+              backgroundColor: '#cd853f',
+              borderColor: 'grey',
+              borderWidth: 1,
+              color: '#f0fff0',
+              width: 100,
+              height: 50,
+              marginRight: 25
+            }}>
+              Add New Note
+            </BtnCustom>
 
-        <TextInput
-          style={{
-            height: 100,
-            width: 300,
-            backgroundColor: 'cornsilk',
-            borderColor: 'olive',
-            borderWidth: 1,
-            paddingTop: 10,
-            paddingLeft: 0,
-            marginTop: 20,
-            alignSelf: 'center'
-          }}
-          placeholder="Add Note's Content"
-          onChangeText={this.onChangeContent}
-        />
-
-        <Button
-          onPress={this.onAddPress}
-          title="Add"
-          color="#841584"
-          accessibilityLabel="Add"
-        />
-        <Button
-          onPress={() => navigator.parentNavigator.pop()}
-          title="Cancel"
-          color="#841584"
-          accessibilityLabel="Cancel"
-        />
-      </View>
+            <BtnCustom
+            onPress={() => navigator.parentNavigator.pop()}
+            style={{
+              backgroundColor: '#800000',
+              borderColor: 'grey',
+              borderWidth: 1,
+              color: '#f0fff0',
+              width: 80,
+              height: 50,
+              paddingTop: 10,
+              marginLeft: 25
+            }}>
+              Cancel
+            </BtnCustom>
+          </View>
+        </View>
+      </ScrollView>
     )
   }
 }

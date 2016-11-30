@@ -36,7 +36,7 @@ export default class NoteListPage extends Component {
     );
   }
   renderScene(route, navigator) {
-    let NoteNodes = this.props.data.reverse().map(note => {
+    let NoteNodes = this.props.data.map(note => {
       return(
         <DataNote key={note.id} note={note} />
       )

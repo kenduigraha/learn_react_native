@@ -19,11 +19,13 @@ import WelcomePage from './app/components/WelcomePage'
 import NoteListPage from './app/components/NoteListPage'
 import AddNotePage from './app/components/AddNotePage'
 import seeder_data from './app/data/seeder_data'
+import LoginPage from './app/components/LoginPage'
+import RegisterPage from './app/components/RegisterPage'
 
 export default class ReactTestKen extends Component {
   constructor(props){
     super(props)
-    this.data = seeder_data
+    this.data = seeder_data.reverse()
   }
   render() {
     return (
@@ -59,8 +61,21 @@ export default class ReactTestKen extends Component {
           <AddNotePage
             navigator={navigator} />
         )
+        break
+      case 'LoginPage':
+        return(
+          <LoginPage
+            navigator={navigator} />
+        )
+        break
+      case 'RegisterPage':
+        return(
+          <RegisterPage
+            navigator={navigator} />
+        )
+        break
       default:
-
+        break
     }
   }
 }

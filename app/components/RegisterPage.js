@@ -15,48 +15,40 @@ import {
 import BtnCustom from 'react-native-button'
 import DataNote from './DataNote'
 
-export default class LoginPage extends Component {
+export default class RegisterPage extends Component {
   constructor(props){
     super(props)
     this.state = {
-      email: '',
-      password: '',
-      error: ''
+      name: '',
+      age: '',
+      email: ''
     }
   }
 
-  onChangeLoginEmail(email){
+  onChangeRegisterName(name){
+    this.setState({name})
+  }
+
+  onChangeRegisterAge(age){
+    this.setState({age})
+  }
+
+  onChangeRegisterEmail(email){
     this.setState({email})
   }
 
-  onChangeLoginPassword(password){
-    this.setState({password})
-  }
-
-  onLoginPress(){
+  onRegisterPress(){
+    var name = this.state.name.trim().toLowerCase()
+    var age = this.state.age.trim().toLowerCase()
     var email = this.state.email.trim().toLowerCase()
-    var password = this.state.password.trim().toLowerCase()
 
-    if(email === '' && password === ''){
-      this.setState({error: "AllEmpty"})
-    }else if(email === ''){
-      this.setState({error: "Email"})
-    }else if(password === ''){
-      this.setState({error: "Password"})
-    }else if(email !== "admin@admin.com" && password !== "admin"){
-      this.setState({error: "NotFound"})
-    }else if(email !== 'admin@admin.com' && password !== ""){
-      this.setState({error: "EmailWrong"})
-    }else if(email !== '' && password !== "admin"){
-      this.setState({error: "PassWrong"})
-    }else if(email === "admin@admin.com" && password === "admin"){
-      this.props.navigator.push({
-        id: 'NoteListPage',
-        name: 'Note List',
-      });
+    if(!name && !age && email){
+      return
+    }else{
       this.setState({
-        email: '',
-        password: ''
+        name: '',
+        age: '',
+        email: ''
       })
     }
   }
@@ -107,13 +99,9 @@ export default class LoginPage extends Component {
               borderWidth: 1,
               alignSelf: 'center'
             }}
-            placeholder="Email"
-            onChangeText={this.onChangeLoginEmail.bind(this)}
+            placeholder="Name"
+            onChangeText={this.onChangeRegisterName.bind(this)}
           />
-
-          {(this.state.error === 'Email' || this.state.error === 'AllEmpty') ? <Text>Please Insert Email</Text> : (this.state.error === 'EmailWrong') ?
-            <Text>Email is wrong</Text>
-          : <Text></Text> }
 
           <TextInput
             style={{
@@ -125,23 +113,31 @@ export default class LoginPage extends Component {
               alignSelf: 'center',
               marginTop: 30
             }}
-            placeholder="Password"
-            onChangeText={this.onChangeLoginPassword.bind(this)}
+            placeholder="Age"
+            onChangeText={this.onChangeRegisterAge.bind(this)}
           />
 
-          {(this.state.error === 'Password' || this.state.error === 'AllEmpty') ? <Text>Please Insert Password</Text> :
-          (this.state.error === 'PassWrong') ? <Text>Password is wrong</Text> : <Text></Text>}
-          <BtnCustom
-          onPress={this.onLoginPress.bind(this)}
-          style={{borderWidth: 1, borderColor: 'grey', backgroundColor: '#a52a2a', color: '#f0fff0', width: 200, marginBottom: 25,
-          marginTop: 30}}>
-            Login
-          </BtnCustom>
+          <TextInput
+            style={{
+              height: 40,
+              width: 300,
+              backgroundColor: 'cornsilk',
+              borderColor: 'olive',
+              borderWidth: 1,
+              alignSelf: 'center',
+              marginTop: 30
+            }}
+            placeholder="Email"
+            onChangeText={this.onChangeRegisterEmail.bind(this)}
+          />
 
           <BtnCustom
-          style={{borderWidth: 1, borderColor: 'grey', backgroundColor: '#a52a2a', color: '#f0fff0', width: 200, marginBottom: 25}}>
-            Forget Password
+          onPress={this.onRegisterPress.bind(this)}
+          style={{borderWidth: 1, borderColor: 'grey', backgroundColor: '#a52a2a', color: '#f0fff0', width: 200, marginBottom: 25,
+          marginTop: 30}}>
+            Register
           </BtnCustom>
+
         </View>
       </ScrollView>
     );
