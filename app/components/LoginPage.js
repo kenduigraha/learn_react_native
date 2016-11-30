@@ -69,10 +69,8 @@ export default class LoginPage extends Component {
       navigationBar={
         <Navigator.NavigationBar style={{
           backgroundColor: '#cd853f',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          alignItems: 'flex-start',
-          flexDirection:'row',}}
+          alignItems: 'center'
+        }}
         routeMapper={NavigationBarRouteMapper} />
       } />
     );
@@ -86,7 +84,7 @@ export default class LoginPage extends Component {
       }}>
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'
         }}>
-          <Text>{this.state.error}</Text>
+          {/* <Text>{this.state.error}</Text>*/}
           <Text style={{
             marginTop: 70,
             marginBottom: 30,

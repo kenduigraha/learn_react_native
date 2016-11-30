@@ -61,10 +61,7 @@ export default class RegisterPage extends Component {
       navigationBar={
         <Navigator.NavigationBar style={{
           backgroundColor: '#cd853f',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          alignItems: 'flex-start',
-          flexDirection:'row',}}
+          alignItems: 'center'}}
         routeMapper={NavigationBarRouteMapper} />
       } />
     );

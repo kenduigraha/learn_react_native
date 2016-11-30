@@ -8,6 +8,8 @@ import {
   Navigator,
   ScrollView,
   TouchableHighlight,//kalau di android TouchableNativeFeedback
+  Platform,
+  TouchableNativeFeedback,
   TouchableOpacity
 } from 'react-native';
 
@@ -46,13 +48,11 @@ export default class LoginPage extends Component {
             Register
           </BtnCustom>
 
-          {/*
-            <BtnCustom
-            onPress={this.gotoNext.bind(this)}
-            style={{backgroundColor: '#800000', borderColor: 'grey', borderWidth: 1, color: '#f0fff0', width: 200}}>
-              Note List
-            </BtnCustom>
-          */}
+          <BtnCustom
+          onPress={this.gotoNext.bind(this)}
+          style={{backgroundColor: '#800000', borderColor: 'grey', borderWidth: 1, color: '#f0fff0', width: 200}}>
+            Note List
+          </BtnCustom>
         </View>
       </ScrollView>
     );

@@ -9,25 +9,74 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Navigator
 } from 'react-native';
 
+import HelloWorld from './app/components/HelloWorld'
+import ScreenForm from './app/components/ScreenForm'
+import WelcomePage from './app/components/WelcomePage'
+import NoteListPage from './app/components/NoteListPage'
+import AddNotePage from './app/components/AddNotePage'
+import seeder_data from './app/data/seeder_data'
+import LoginPage from './app/components/LoginPage'
+import RegisterPage from './app/components/RegisterPage'
+
 export default class ReactTestKen extends Component {
+  constructor(props){
+    super(props)
+    this.data = seeder_data.reverse()
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+      <Navigator
+        initialRoute={{id: 'WelcomePage', name: 'Index'}}
+        renderScene={this.renderScene.bind(this)}
+        configureScene={(route) => {
+          if (route.sceneConfig) {
+            return route.sceneConfig;
+          }
+          return Navigator.SceneConfigs.FloatFromRight;
+        }}
+      />
     );
+  }
+  renderScene(route, navigator) {
+    var routeId = route.id;
+    switch (routeId) {
+      case 'WelcomePage':
+        return (
+          <WelcomePage
+            navigator={navigator} />
+        )
+        break;
+      case 'NoteListPage':
+        return (
+          <NoteListPage
+            data={this.data} navigator={navigator} />
+        )
+        break
+      case 'AddNotePage':
+        return(
+          <AddNotePage
+            navigator={navigator} />
+        )
+        break
+      case 'LoginPage':
+        return(
+          <LoginPage
+            navigator={navigator} />
+        )
+        break
+      case 'RegisterPage':
+        return(
+          <RegisterPage
+            navigator={navigator} />
+        )
+        break
+      default:
+        break
+    }
   }
 }
 
@@ -36,7 +85,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#f5f5dc',
   },
   welcome: {
     fontSize: 20,
@@ -48,6 +97,11 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  big_red:{
+    color: "red",
+    fontWeight: 'bold',
+    fontSize: 42
+  }
 });
 
 AppRegistry.registerComponent('ReactTestKen', () => ReactTestKen);

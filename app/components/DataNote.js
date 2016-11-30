@@ -24,7 +24,7 @@ export default class DataNote extends Component {
         flex: 1,
         alignItems: 'center',
         // backgroundColor: '#f5f5dc', justifyContent: 'center',
-        width: 350,
+        // width: 350,
         height: 75,
         borderWidth: 1,
         alignSelf: 'stretch',

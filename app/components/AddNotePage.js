@@ -87,7 +87,6 @@ export default class AddNotePage extends Component {
               borderColor: 'olive',
               borderWidth: 1,
               paddingTop: 10,
-              paddingLeft: 0,
               marginTop: 20,
               marginBottom: 20,
               alignSelf: 'center',

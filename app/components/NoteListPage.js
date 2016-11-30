@@ -27,10 +27,7 @@ export default class NoteListPage extends Component {
       navigationBar={
         <Navigator.NavigationBar style={{
           backgroundColor: '#cd853f',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          alignItems: 'flex-start',
-          flexDirection:'row',}}
+          alignItems: 'center'}}
         routeMapper={NavigationBarRouteMapper} />
       } />
     );
@@ -48,7 +45,7 @@ export default class NoteListPage extends Component {
       }}>
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'
         }}>
-          <Text>{NoteNodes}</Text>
+          {NoteNodes}
         </View>
       </ScrollView>
     );
