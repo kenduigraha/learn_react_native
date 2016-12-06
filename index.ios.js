@@ -21,26 +21,57 @@ import AddNotePage from './app/components/AddNotePage'
 import seeder_data from './app/data/seeder_data'
 import LoginPage from './app/components/LoginPage'
 import RegisterPage from './app/components/RegisterPage'
+// import { createStore } from 'redux'
+
+import { Provider } from 'react-redux'
+// import store from './app/store'
+import { createStore, compose, applyMiddleware } from 'redux'
+import rootReducer from './app/reducers'
+import ReduxThunk from 'redux-thunk'
+
+const enhancer = compose(
+  applyMiddleware(ReduxThunk)
+)
+
+const store = createStore(
+  rootReducer,
+  enhancer
+)
+
+store.subscribe(() => {
+  console.log('take this ', store.getState())
+})
+
+store.dispatch({type: 'ADD_NOTES', note: {
+  id: 'action.note.id',
+  title: 'action.note.title',
+  content: 'action.note.content',
+  userId: 'action.note.userId'
+}})
 
 export default class ReactTestKen extends Component {
   constructor(props){
     super(props)
     this.data = seeder_data.reverse()
   }
+
   render() {
     return (
-      <Navigator
-        initialRoute={{id: 'WelcomePage', name: 'Index'}}
-        renderScene={this.renderScene.bind(this)}
-        configureScene={(route) => {
-          if (route.sceneConfig) {
-            return route.sceneConfig;
-          }
-          return Navigator.SceneConfigs.FloatFromRight;
-        }}
-      />
+      <Provider store={store}>
+        <Navigator
+          initialRoute={{id: 'WelcomePage', name: 'Index'}}
+          renderScene={this.renderScene.bind(this)}
+          configureScene={(route) => {
+            if (route.sceneConfig) {
+              return route.sceneConfig;
+            }
+            return Navigator.SceneConfigs.FloatFromRight;
+          }}
+        />
+      </Provider>
     );
   }
+
   renderScene(route, navigator) {
     var routeId = route.id;
     switch (routeId) {
